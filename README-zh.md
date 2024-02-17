@@ -25,16 +25,16 @@ DNMP（Docker + Nginx/Openresty + MySQL5,8 + PHP7,8 + Redis + ElasticSearch + Mo
 
 1. `100%`开源
 2. `100%`遵循Docker标准
-3. 支持**多版本PHP**共存，可任意切换（PHP5.4、PHP5.6、PHP7.1、PHP7.2、PHP7.3、PHP7.4、PHP8.0)
+3. 支持**多版本PHP**共存，可任意切换（PHP7.0、PHP7.1、PHP7.2、PHP7.3、PHP7.4、PHP8.0)
 4. 支持绑定**任意多个域名**
 5. 支持**HTTPS和HTTP/2**
 6. **PHP源代码、MySQL数据、配置文件、日志文件**都可在Host中直接修改查看
 7. 内置**完整PHP扩展安装**命令
 8. 默认支持`pdo_mysql`、`mysqli`、`mbstring`、`gd`、`curl`、`opcache`等常用热门扩展，根据环境灵活配置
 9. 可一键选配常用服务：
-    - 多PHP版本：PHP5.4、PHP5.6、PHP7.0-7.4、PHP8.0
+    - 多PHP版本：PHP7.0-7.4、PHP8.0
     - Web服务：Nginx、Openresty
-    - 数据库：MySQL5、MySQL8、Redis、memcached、MongoDB、ElasticSearch
+    - 数据库：MySQL8、Redis、memcached、MongoDB、ElasticSearch
     - 消息队列：RabbitMQ
     - 辅助工具：Kibana、Logstash、phpMyAdmin、phpRedisAdmin、AdminMongo
 10. 实际项目中应用，确保`100%`可用
@@ -112,8 +112,7 @@ DNMP（Docker + Nginx/Openresty + MySQL5,8 + PHP7,8 + Redis + ElasticSearch + Mo
     $ cp env.sample .env                                # 复制环境变量文件
     $ cp docker-compose.sample.yml docker-compose.yml   # 复制 docker-compose 配置文件。默认启动3个服务：
                                                         # Nginx、PHP7和MySQL8。要开启更多其他服务，如Redis、
-                                                        # PHP5.6、PHP5.4、MongoDB，ElasticSearch等，请删
-                                                        # 除服务块前的注释
+                                                        # PHP8.0、MongoDB，ElasticSearch，请删除服务块前的注释
     $ docker-compose up                                 # 启动
     ```
 5. 在浏览器中访问：`http://localhost`或`https://localhost`(自签名HTTPS演示)就能看到效果，PHP代码在文件`./www/localhost/index.php`。

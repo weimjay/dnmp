@@ -9,12 +9,12 @@ DNMP Project Features:
 
 1.  `100%`open source
 2.  `100%`Follow docker standards
-3.  backing**Multiple versions of PHP**Coexistence, can be switched arbitrarily (PHP7.0, PHP7.1, PHP7.2, PHP7.3, PHP7.4, PHP8.0)
-4.  Binding is supported**Any number of domain names**
-5.  backing**HTTPS and HTTP/2**
+3.  Supports the coexistence of **multiple versions of PHP**, can be switched arbitrarily (PHP7.0, PHP7.1, PHP7.2, PHP7.3, PHP7.4, PHP8.0)
+4.  Supports binding **Any number of domain names**
+5.  Supports **HTTPS and HTTP/2**
 6.  **PHP source code, MySQL data, configuration files, log files**All can be directly modified in Host
-7.  Built**Full PHP extension installation**command
-8.  Supported by default`pdo_mysql`、`mysqli`、`mbstring`、`gd`、`curl`、`opcache`and other commonly used and popular extensions, flexibly configured according to the environment
+7.  Built-in **Full PHP extension installation** command
+8.  Supports `pdo_mysql`、`mysqli`、`mbstring`、`gd`、`curl`、`opcache` by default and other commonly used and popular extensions, flexibly configured according to the environment
 9.  One-click selection of common services:
     *   Multiple PHP versions: PHP7.0-7.4, PHP8.0
     *   Web services: Nginx, Openresty
@@ -87,13 +87,12 @@ DNMP Project Features:
         $ sudo gpasswd -a ${USER} docker
 4.  Copy and name the configuration file (for Windows systems.)`copy`command), start:
     ```
-        $ cd dnmp                                           # 进入项目目录
-        $ cp env.sample .env                                # 复制环境变量文件
-        $ cp docker-compose.sample.yml docker-compose.yml   # 复制 docker-compose 配置文件。默认启动3个服务：
-                                                            # Nginx、PHP7和MySQL8。要开启更多其他服务，如Redis、
-                                                            # PHP5.6、PHP5.4、MongoDB，ElasticSearch等，请删
-                                                            # 除服务块前的注释
-        $ docker-compose up                                 # 启动
+        $ cd dnmp                                           # Enter the project directory
+        $ cp env.sample .env                                # Copy the environment variable file
+        $ cp docker-compose.sample.yml docker-compose.yml   # Copy the docker-compose configuration file. 3 services are started by default:
+                                                            # Nginx、PHP7和MySQL8. To enable more other services, such as redis, such as Redis, 
+                                                            # PHP8.0, MongoDB, ElasticSearch，Please remove the comment before the service block
+        $ docker-compose up                                 # start up
     ```
 5.  Access in a browser:`http://localhost`or`https://localhost`(Self-signed HTTPS demo) can see the effect of PHP code in the file`./www/localhost/index.php`。
 
@@ -357,19 +356,19 @@ composer update
 To manage services, follow the command with the server name, for example:
 
 ```bash
-$ docker-compose up                         # 创建并且启动所有容器
-$ docker-compose up -d                      # 创建并且后台运行方式启动所有容器
-$ docker-compose up nginx php mysql         # 创建并且启动nginx、php、mysql的多个容器
-$ docker-compose up -d nginx php  mysql     # 创建并且已后台运行的方式启动nginx、php、mysql容器
+$ docker-compose up                         # Create and start all containers
+$ docker-compose up -d                      # Create and start all containers in background mode
+$ docker-compose up nginx php mysql         # Create and start multiple containers of nginx, php, and mysql
+$ docker-compose up -d nginx php  mysql     # Create and start nginx, php, and mysql containers running in the background
 
 
-$ docker-compose start php                  # 启动服务
-$ docker-compose stop php                   # 停止服务
-$ docker-compose restart php                # 重启服务
-$ docker-compose build php                  # 构建或者重新构建服务
+$ docker-compose start php                  # Start service
+$ docker-compose stop php                   # Stop service
+$ docker-compose restart php                # Restart service
+$ docker-compose build php                  # Build or rebuild the service
 
-$ docker-compose rm php                     # 删除并且停止php容器
-$ docker-compose down                       # 停止并删除容器，网络，图像和挂载卷
+$ docker-compose rm php                     # Delete and stop the php container
+$ docker-compose down                       # Stop and delete containers, networks, images and mounted volumes
 ```
 
 ### 4.2 Add shortcut commands
@@ -379,8 +378,8 @@ At the time of development, we may use it often`docker exec -it`Entering the con
 First, review the available containers in the host:
 
 ```bash
-$ docker ps           # 查看所有运行中的容器
-$ docker ps -a        # 所有容器
+$ docker ps           # show all running containers
+$ docker ps -a        # show all containers
 ```
 
 Output`NAMES`That column is the name of the container, or if the default configuration is used, then the name is`nginx`、`php`、`php56`、`mysql`Wait.
@@ -516,10 +515,10 @@ There are two cases of this.
 The first case, in**PHP code**。
 
 ```php
-// 连接MySQL
+// Connect to MySQL
 $dbh = new PDO('mysql:host=mysql;dbname=mysql', 'root', '123456');
 
-// 连接Redis
+// Connect to Redis
 $redis = new Redis();
 $redis->connect('redis', 6379);
 ```
@@ -551,11 +550,11 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 ```mysql
  mysql>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
  mysql>flush privileges;
-// 其中各字符的含义：
-// *.* 对任意数据库任意表有效
-// "root" "123456" 是数据库用户名和密码
-// '%' 允许访问数据库的IP地址，%意思是任意IP，也可以指定IP
-// flush privileges 刷新权限信息
+// The meaning of each character:
+// *.* Valid for any table in any database
+// "root" "123456" are the database username and password
+// '%' means allowing any IP address to access the database, you can also specify the IP address
+// flush privileges Refresh permission information
 ```
 
 3\. Then use the php container directly`172.0.17.1:3306`Just connect
