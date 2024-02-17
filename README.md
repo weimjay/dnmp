@@ -22,8 +22,8 @@ DNMP Project Features:
     *   Message Queuing: RabbitMQ
     *   Accessibility: Kibana, Logstash, phpMyAdmin, phpRedisAdmin, AdminMongo
 10. Apply in real projects, ensure`100%`available
-11. All mirrors originate from[Docker official repository](https://hub.docker.com), safe and reliable
-12. One configuration,**Windows、Linux、MacOs**All available
+11. All mirrors originate from [Docker official repository](https://hub.docker.com), safe and reliable
+12. One configuration, **Windows、Linux、MacOs** all available
 13. Supports quick installation extension commands `install-php-extensions apcu`
 14. Supports installing CERTBOT to obtain SSL certificates for free https
 
@@ -314,7 +314,7 @@ Refer to the sample files
 **Method 1: Use the compare command in the host**
 
 1.  Determine the path to the compiler cache. For example, my dnmp download is in`~/dnmp`directory, that compiler's cache path is`~/dnmp/data/composer`。
-2.  reference[bash.alias.sample](bash.alias.sample)A sample file that copies the corresponding php composer function to the host `~/.bashrc`File.
+2.  Refer to [bash.alias.sample](bash.alias.sample), a sample file that copies the corresponding php composer function to the host `~/.bashrc`File.
     > It is important to note here that the sample file is in`~/dnmp/data/composer`The directory needs to be the directory identified in the first step.
 3.  To make a file work:
     ```bash
@@ -341,7 +341,7 @@ Refer to the sample files
 
 **Method 2: Use the composer command inside the container**
 
-There is another way, which is to go into the container and execute`composer`Command, using the PHP7 container as an example:
+There is another way, which is to go into the container and execute`composer` command, using the PHP7 container as an example:
 
 ```bash
 docker exec -it php /bin/sh
@@ -417,7 +417,7 @@ The location where the log file is generated depends on the value of each log co
 
 Nginx logs are the logs we use the most, so we put them separately in the root directory`log`Under.
 
-`log`The directory will be mapped for the Nginx container`/var/log/nginx`directory, so in the Nginx configuration file, the location of the output log needs to be configured`/var/log/nginx`Directories, such as:
+`log`The directory will be mapped for the Nginx container`/var/log/nginx`directory, so in the Nginx configuration file, the location of the output log needs to be configured`/var/log/nginx`, such as:
 
     error_log  /var/log/nginx/nginx.localhost.error.log  warn;
 
@@ -460,7 +460,7 @@ The above is the configuration of the log file in mysql.conf.
 
 ## 6. Database management
 
-This project defaults to `docker-compose.yml`For MySQL online management is not turned on*phpMyAdmin*, and for redis online management*phpRedisAdmin*, which can be modified or deleted as needed.
+This project defaults to `docker-compose.yml` For MySQL online management is not turned on *phpMyAdmin*, and for redis online management *phpRedisAdmin*, which can be modified or deleted as needed.
 
 ### 6.1 phpMyAdmin
 
@@ -536,7 +536,7 @@ Over here`host`The parameter cannot be used localhost because it communicates wi
 
 ### 8.5 How php in a container connects to host MySQL
 
-1\. Host execution`ifconfig docker0`get`inet`It's about connecting`ip`address
+1. Host execution`ifconfig docker0`get`inet`It's about connecting`ip`address
 
 ```sh
 $ ifconfig docker0
@@ -545,7 +545,7 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         ...
 ```
 
-2\. Run the host Mysql command line
+2. Run the host Mysql command line
 
 ```mysql
  mysql>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
@@ -557,11 +557,11 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 // flush privileges Refresh permission information
 ```
 
-3\. Then use the php container directly`172.0.17.1:3306`Just connect
+3. Then use the php container directly`172.0.17.1:3306`Just connect
 
 ### 8.6 SQLSTATE\[HY000] \[1130] Host '172.19.0.2' is not allowed to connect to this MySQL server
 
-1.  Currently using mysql-server `8.0.28`The above version, php version is required`7.4.7`The above can only be connected
+This project currently uses mysql-server `8.0.28` or above, and the php version requires `7.4.7` or above to connect.
 
 ## License
 
