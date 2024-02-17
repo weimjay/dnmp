@@ -1,23 +1,11 @@
 DNMP（Docker + Nginx/Openresty + MySQL5,8 + PHP7,8 + Redis + ElasticSearch + MongoDB + RabbitMQ）是一款全功能的**LNMP一键安装程序，支持Arm CPU**。
 
-> 有部分 [海外工作机会](https://runlala.com/) 推荐 ，有兴趣的朋友可以看看。
-
 
 <details>
 <summary>项目地址</summary>
 
-- [GitHub 地址](https://github.com/yeszao/dnmp)
-- [Gitee 地址](https://gitee.com/yeszao/dnmp)
+- [GitHub 地址](https://github.com/weimjay/dnmp)
 
-</details>
-
-<details>
-<summary>QQ交流群</summary>
-
-- 1群：**572041090**（已满）
-- 2群：**300723526**（已满）
-- 3群：**878913761**（已满）
-- 4群：**850756381**（有位）
 </details>
 
 <details>
@@ -534,14 +522,14 @@ $ redis-cli -h127.0.0.1
 这里`host`参数不能用localhost是因为它默认是通过sock文件与mysql通信，而容器与主机文件系统已经隔离，所以需要通过TCP方式连接，所以需要指定IP。
 
 ### 8.5 容器内的php如何连接宿主机MySQL
-1.宿主机执行`ifconfig docker0`得到`inet`就是要连接的`ip`地址
+1. 宿主机执行`ifconfig docker0`得到`inet`就是要连接的`ip`地址
 ```sh
 $ ifconfig docker0
 docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
         ...
 ```
-2.运行宿主机Mysql命令行
+2. 运行宿主机Mysql命令行
 ```mysql
  mysql>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
  mysql>flush privileges;
@@ -552,13 +540,13 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 // flush privileges 刷新权限信息
 ```
 
-3.接着直接php容器使用`172.0.17.1:3306`连接即可
+3. 接着直接php容器使用`172.0.17.1:3306`连接即可
 
 ### 8.6 SQLSTATE[HY000] [1130] Host '172.19.0.2' is not allowed to connect to this MySQL server
-1. 目前使用mysql-server `8.0.28`以上的版本,php版本需要`7.4.7`以上才能连接
+目前使用mysql-server `8.0.28`以上的版本,php版本需要`7.4.7`以上才能连接
 
-### 8.7 Docker是如何生成容器名
-[在不指定容器名称时,是如何生成容器名](https://pet2cattle.com/2022/08/docker-container-names-generator)
+### 8.7 Docker是如何生成容器名的
+[在不指定容器名称时, 是如何生成容器名的](https://pet2cattle.com/2022/08/docker-container-names-generator)
 
 ## License
 MIT
